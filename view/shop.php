@@ -1,3 +1,6 @@
+<?php
+include("../actions/product_function.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +11,7 @@
 	<link rel="stylesheet" href=
 "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
  <link rel="stylesheet" href="../css/index.css">
- <link rel="stylesheet" href="../css/shop.css">
+ <link rel="stylesheet" href="../css/shop.css"> -->
 	<script src=
 "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
 	</script>
@@ -57,83 +60,71 @@
                 <div class="container">
                     <div class="row justify-content-center">
                         
-<div class="row">
-<div class="col-md-3">
-	<figure class="card card-product">
-		<div class="img-wrap"> 
-			<img src="https://static.wixstatic.com/media/a9ff3b_b2039d1e6a954631a41b85d674400f19.jpg/v1/fill/w_281,h_281,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/a9ff3b_b2039d1e6a954631a41b85d674400f19.jpg">
-			
-		</div>
-		<figcaption class="info-wrap">
-			<h6 class="title text-dots"><a href="#">Men's Shoes</a></h6>
-			<div class="action-wrap">
-				<a href="#" class="btn btn-primary btn-sm float-right"> View </a>
-				<div class="price-wrap h5">
-					<span class="price-new">$1280</span>
-					<del class="price-old">$1980</del>
-				</div> <!-- price-wrap.// -->
-			</div> <!-- action-wrap -->
-		</figcaption>
-	</figure> <!-- card // -->
-</div> <!-- col // -->
-<div class="col-md-3">
-	<figure class="card card-product">
-		<div class="img-wrap"> <img src="https://static.wixstatic.com/media/a9ff3b_4b1550da0a014dea9d8dca081ce5b424.jpg/v1/fill/w_281,h_281,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/a9ff3b_4b1550da0a014dea9d8dca081ce5b424.jpg">
-		
-		</div>
-		<figcaption class="info-wrap">
-			<h6 class="title text-dots"><a href="#">Glasses</a></h6>
-			<div class="action-wrap">
-				<a href="#" class="btn btn-primary btn-sm float-right"> view</a>
-				<div class="price-wrap h5">
-					<span class="price-new">$280</span>
-				</div> <!-- price-wrap.// -->
-			</div> <!-- action-wrap -->
-		</figcaption>
-	</figure> <!-- card // -->
-</div> <!-- col // -->
-<div class="col-md-3">
-	<figure class="card card-product">
-		<div class="img-wrap"><img src="https://static.wixstatic.com/media/a9ff3b_2dc1e209d10945a7b4329d2328dfcd7b.jpg/v1/fill/w_281,h_281,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/a9ff3b_2dc1e209d10945a7b4329d2328dfcd7b.jpg"> 
-		
-		</div>
-		<figcaption class="info-wrap">
-			<h6 class="title text-dots"><a href="#">Name of product</a></h6>
-			<div class="action-wrap">
-            <a href="#" class="btn btn-primary btn-sm float-right"> view </a>
-				<div class="price-wrap h5">
-					<span class="price-new">$280</span>
-				</div> <!-- price-wrap.// -->
-			</div> <!-- action-wrap -->
-		</figcaption>
-	</figure> <!-- card // -->
-</div> <!-- col // -->
-<div class="col-md-3">
-	<figure class="card card-product">
-		<div class="img-wrap"> <img src="https://static.wixstatic.com/media/a9ff3b_4181ada6b8024111b57df31ca9a73863.jpg/v1/fill/w_281,h_281,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/a9ff3b_4181ada6b8024111b57df31ca9a73863.jpg">
-			
-		</div>
-		<figcaption class="info-wrap">
-			<h6 class="title text-dots"><a href="#">Men's shirt</a></h6>
-			<div class="action-wrap">
-				<a href="#" class="btn btn-primary btn-sm float-right"> view </a>
-				<div class="price-wrap h5">
-					<span class="price-new">$280</span>
-				</div> <!-- price-wrap.// -->
-			</div> <!-- action-wrap -->
-		</figcaption>
-	</figure> <!-- card // -->
-</div> <!-- col // -->
-</div> <!-- row.// -->
+                        <div class='row'>
+                        <?php
+                            foreach ($productlist as $aproduct) {
+                            $product_id = $aproduct['product_id'];
+                            $product_title = $aproduct['product_title'];
+                            $product_price = $aproduct['product_price'];
+                            $product_image = $aproduct['product_image'];
+                            if (check_login_index()==true) 
+                            {
+                                echo"
+                        <div class='col-md-3'>
+                            <figure class='card card-product'>
+                                <div class='img-wrap'> 
+                                    <img src=' ../uploads/$product_image'>
+                                    
+                                </div>
+                                <figcaption class='info-wrap'>
+                                    <h6 class='title text-dots'><a href='single_product.php?vid=$product_id'>$product_title</a></h6>
+                                    <div class='action-wrap'>
+                                        <a href='single_product.php?vid=$product_id' class='btn btn-primary btn-sm float-right'> View </a>
+                                        <div class='price-wrap h5'>
+                                            <span class='price-new'>$product_price </span>
+                                            <del class='price-old'>$1980</del>
+                                        </div> <!-- price-wrap.// -->
+                                    </div> <!-- action-wrap -->
+                                </figcaption>
+                            </figure> <!-- card // -->
+                        </div> <!-- col // -->
+                        
+                        "; }
+                        else{
+                            echo"
+                            <div class='col-md-3'>
+                            <figure class='card card-product'>
+                                <div class='img-wrap'> 
+                                    <img src=' ../uploads/$product_image'>
+                                    
+                                </div>
+                                <figcaption class='info-wrap'>
+                                    <h6 class='title text-dots'><a href='single_product.php?vid=$product_id'>$product_title</a></h6>
+                                    <div class='action-wrap'>
+                                        <a href='single_product.php?vid=$product_id' class='btn btn-primary btn-sm float-right'> View </a>
+                                        <div class='price-wrap h5'>
+                                            <span class='price-new'>$product_price </span>
+                                            <del class='price-old'>$1980</del>
+                                        </div> <!-- price-wrap.// -->
+                                    </div> <!-- action-wrap -->
+                                </figcaption>
+                            </figure> <!-- card // -->
+                        </div> <!-- col // -->
+                        ";}
+                        }?>
+
+                         
+                      
+                        </div> <!-- row.// -->
 
 
 
-<!--container end-->
-                    </div>
-                </div>
-            </div>
+                        <!--container end-->
+                                            </div>
+                                        </div>
+                                    </div>
 
-        </section>
+                                </section>
     
 
                 
